@@ -33,7 +33,7 @@ Proyek ini tidak memerlukan build tools atau dependencies yang rumit. Anda hanya
 ## Clone repository ini:
 
 
-```git clone https://github.com/username-anda/nama-repo-anda.git```
+```git clone https://github.com/nursyabnii/sudoku.git```
 
 Masuk ke direktori proyek:
 ```cd nama-repo-anda```
