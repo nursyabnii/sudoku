@@ -4,26 +4,18 @@ Sebuah game Sudoku klasik yang dibangun menggunakan HTML, CSS, dan JavaScript mu
  [Play Sudoku](https://sudoku-rho-five.vercel.app/) 👈 
 
 ## ✨ Fitur Utama
-Halaman Utama Interaktif: Pengguna dapat memasukkan nama, memilih tingkat kesulitan, dan melihat leaderboard sebelum memulai.
-
-Tiga Tingkat Kesulitan: Pilih antara Easy, Medium, dan Hard untuk menyesuaikan tantangan.
-
-Batas Kesalahan: Permainan akan berakhir jika pemain membuat lebih dari 5 kesalahan.
-
-Leaderboard Lokal: Skor (nama dan waktu) untuk setiap tingkat kesulitan disimpan di localStorage browser, menampilkan 5 skor teratas.
-
-Highlight Cerdas: Klik pada sebuah kotak untuk menyorot baris, kolom, dan semua angka yang sama di papan, memudahkan pencarian.
-
-Input Angka Dinamis: Tombol angka di palet akan nonaktif secara otomatis jika angka tersebut sudah lengkap (terisi 9) di papan.
-
-Desain Responsif: Tampilan game beradaptasi dengan baik di perangkat desktop maupun mobile.
+- Halaman Utama Interaktif: Pengguna dapat memasukkan nama, memilih tingkat kesulitan, dan melihat leaderboard sebelum memulai.
+- Tiga Tingkat Kesulitan: Pilih antara Easy, Medium, dan Hard untuk menyesuaikan tantangan.
+- Batas Kesalahan: Permainan akan berakhir jika pemain membuat lebih dari 5 kesalahan.
+- Leaderboard Lokal: Skor (nama dan waktu) untuk setiap tingkat kesulitan disimpan di localStorage browser, menampilkan 5 skor teratas.
+- Highlight Cerdas: Klik pada sebuah kotak untuk menyorot baris, kolom, dan semua angka yang sama di papan, memudahkan pencarian.
+- Input Angka Dinamis: Tombol angka di palet akan nonaktif secara otomatis jika angka tersebut sudah lengkap (terisi 9) di papan.
+- Desain Responsif: Tampilan game beradaptasi dengan baik di perangkat desktop maupun mobile.
 
 ## 🛠️ Teknologi yang Digunakan
-HTML5: Untuk struktur dasar halaman web.
-
-CSS3: Untuk styling, layout, dan desain responsif.
-
-JavaScript (ES6+): Untuk semua logika game, interaksi DOM, dan manajemen localStorage.
+- HTML5: Untuk struktur dasar halaman web.
+- CSS3: Untuk styling, layout, dan desain responsif.
+- JavaScript (ES6+): Untuk semua logika game, interaksi DOM, dan manajemen localStorage.
 
 ## 📂 Struktur File
 sudoku-game/
@@ -38,14 +30,11 @@ Proyek ini tidak memerlukan build tools atau dependencies yang rumit. Anda hanya
 
 ## Clone repository ini:
 
-Bash
 
-git clone https://github.com/username-anda/nama-repo-anda.git
+```git clone https://github.com/username-anda/nama-repo-anda.git```
+
 Masuk ke direktori proyek:
-
-Bash
-
-cd nama-repo-anda
+```cd nama-repo-anda```
 Buka file index.html langsung di browser favorit Anda (misalnya dengan double-click).
 
 deploy-an
