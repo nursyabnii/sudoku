@@ -18,6 +18,7 @@ Sebuah game Sudoku klasik yang dibangun menggunakan HTML, CSS, dan JavaScript mu
 - JavaScript (ES6+): Untuk semua logika game, interaksi DOM, dan manajemen localStorage.
 
 ## 📂 Struktur File
+```
 sudoku-game/
 ├── 📄 index.html      # Halaman utama (Home)
 ├── 📄 game.html       # Halaman permainan Sudoku
@@ -25,6 +26,7 @@ sudoku-game/
 ├── 🎨 style.css       # CSS untuk halaman permainan
 ├── 📜 home.js        # JavaScript untuk halaman utama
 └── 📜 script.js       # JavaScript untuk logika permainan Sudoku
+```
 🚀 Cara Menjalankan Secara Lokal
 Proyek ini tidak memerlukan build tools atau dependencies yang rumit. Anda hanya perlu sebuah browser.
 
