@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             playerName = 'Guest';
         }
         // Pindah ke halaman game dengan membawa data nama dan kesulitan
-        window.location.href = `game.php?name=${encodeURIComponent(playerName)}&difficulty=${selectedDifficulty}`;
+        window.location.href = `game.html?name=${encodeURIComponent(playerName)}&difficulty=${selectedDifficulty}`;
     });
 
     // Fungsi untuk menampilkan leaderboard
