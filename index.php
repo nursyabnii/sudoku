@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku - Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sudoku</h1>
+
+        <div class="setup-box">
+            <h2>Mulai Game Baru</h2>
+            <div class="input-group">
+                <label for="player-name">Nama Pemain:</label>
+                <input type="text" id="player-name" value="Guest" placeholder="Masukkan nama...">
+            </div>
+
+            <div class="input-group">
+                <label>Pilih Kesulitan:</label>
+                <div class="difficulty-select">
+                    <button class="diff-btn active" data-difficulty="easy">Easy</button>
+                    <button class="diff-btn" data-difficulty="medium">Medium</button>
+                    <button class="diff-btn" data-difficulty="hard">Hard</button>
+                </div>
+            </div>
+
+            <button id="start-btn">Mulai Game</button>
+        </div>
+
+        <div class="leaderboard-box">
+            <h2>🏆 Leaderboard 🏆</h2>
+            <div class="leaderboard-grid">
+                <div id="leaderboard-easy">
+                    <h3>Easy</h3>
+                    <ol></ol>
+                </div>
+                <div id="leaderboard-medium">
+                    <h3>Medium</h3>
+                    <ol></ol>
+                </div>
+                <div id="leaderboard-hard">
+                    <h3>Hard</h3>
+                    <ol></ol>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; <?= date("Y") ?> Dibuat oleh Bani Haris</p>
+    </div>
+    <script src="home.js"></script>
+</body>
+
+</html>

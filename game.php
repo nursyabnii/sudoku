@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Sudoku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Sudoku</h1>
+            <div class="game-info">
+                <div id="player-info" class="info-item"></div>
+                <div class="info-item">
+                    <span>Kesalahan:</span>
+                    <span id="mistakes">0 / 5</span>
+                </div>
+                <div class="info-item">
+                    <span>Waktu:</span>
+                    <span id="timer">00:00</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div id="sudoku-board"></div>
+            <div id="number-palette"></div>
+        </main>
+
+        <footer>
+            <a href="index.php" class="home-btn">Kembali ke Home</a>
+            <p class="copyright">&copy; <?= date("Y") ?> Dibuat oleh Bani Haris</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
