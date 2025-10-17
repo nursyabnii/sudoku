@@ -4,25 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Sudoku</title>
+    <title>Sudoku Neon - Game</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Sudoku</h1>
+            <h1 class="neon-text">Sudoku</h1>
+            <div id="player-info"></div>
             <div class="game-info">
-                <div id="player-info" class="info-item"></div>
-                <div class="info-item">
-                    <span>Kesalahan:</span>
-                    <span id="mistakes">0 / 5</span>
-                </div>
-                <div class="info-item">
-                    <span>Waktu:</span>
-                    <span id="timer">00:00</span>
-                </div>
+                <div>Kesalahan: <span id="mistakes">0 / 5</span></div>
+                <div>Waktu: <span id="timer">00:00</span></div>
             </div>
         </header>
 
@@ -38,7 +35,6 @@
             </p>
         </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 

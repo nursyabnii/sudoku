@@ -3,11 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('start-btn');
     const diffBtns = document.querySelectorAll('.diff-btn');
 
+    // --- Tambahan: Muat Suara ---
+    const clickSound = new Audio('sounds/click.wav');
+
     let selectedDifficulty = 'easy'; // Default
 
     // Event listener untuk tombol kesulitan
     diffBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            clickSound.play(); // <-- Mainkan suara klik
             diffBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             selectedDifficulty = btn.dataset.difficulty;
@@ -16,12 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener untuk tombol start
     startBtn.addEventListener('click', () => {
+        clickSound.play(); // <-- Mainkan suara klik
         let playerName = nameInput.value.trim();
         if (playerName === '') {
             playerName = 'Guest';
         }
         // Pindah ke halaman game dengan membawa data nama dan kesulitan
-        window.location.href = `game.html?name=${encodeURIComponent(playerName)}&difficulty=${selectedDifficulty}`;
+        // Diberi sedikit jeda agar suara sempat terdengar sebelum pindah halaman
+        setTimeout(() => {
+            window.location.href = `game.html?name=${encodeURIComponent(playerName)}&difficulty=${selectedDifficulty}`;
+        }, 150); // jeda 150 milidetik
     });
 
     // Fungsi untuk menampilkan leaderboard

@@ -1,3 +1,10 @@
+// --- Tambahan: Muat semua suara di awal ---
+const clickSound = new Audio('sounds/click.wav');
+const correctSound = new Audio('sounds/correct.wav');
+const errorSound = new Audio('sounds/error.wav');
+const winSound = new Audio('sounds/win.wav');
+const loseSound = new Audio('sounds/lose.wav');
+
 document.addEventListener('DOMContentLoaded', function () {
     // --- Ambil data dari URL ---
     const params = new URLSearchParams(window.location.search);
@@ -98,8 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     cell.textContent = board[r][c];
                     cell.classList.add('given');
                 }
-                if (r === 2 || r === 5) cell.style.borderBottom = "2px solid #333";
-                if (c === 2 || c === 5) cell.style.borderRight = "2px solid #333";
                 boardElement.appendChild(cell);
             }
         }
@@ -121,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     boardElement.addEventListener('click', onCellClick);
 
     function onCellClick(e) {
+        clickSound.play(); // <-- Mainkan suara klik
         const cell = e.target;
         if (!cell.classList.contains('cell')) return;
         if (selectedCell) selectedCell.classList.remove('selected');
@@ -130,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function onNumberClick(e) {
+        clickSound.play(); // <-- Mainkan suara klik
         const selectedNumberDiv = e.target;
         if (!selectedCell || selectedCell.classList.contains('given')) return;
 
@@ -138,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const col = parseInt(selectedCell.dataset.col);
 
         if (solution[row][col] === num) {
+            correctSound.play(); // <-- Mainkan suara BENAR
             selectedCell.textContent = num;
             selectedCell.classList.add('user-input');
             board[row][col] = num;
@@ -147,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
             selectedCell = null;
             if (isGameWon()) handleWin();
         } else {
+            errorSound.play(); // <-- Mainkan suara SALAH
             mistakes++;
             updateMistakesDisplay();
             selectedCell.classList.add('error');
@@ -157,16 +166,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Leaderboard & Win/Loss ---
     function handleWin() {
+        winSound.play(); // <-- Mainkan suara MENANG
         clearInterval(timerInterval);
         saveToLeaderboard();
-        alert(`Selamat, ${playerName}! Anda menyelesaikan puzzle dalam ${formatTime(timeInSeconds)}.`);
-        window.location.href = 'index.html'; // Kembali ke home
+        // Beri jeda agar suara kemenangan terdengar sebelum alert muncul
+        setTimeout(() => {
+            alert(`Selamat, ${playerName}! Anda menyelesaikan puzzle dalam ${formatTime(timeInSeconds)}.`);
+            window.location.href = 'index.html'; // Kembali ke home
+        }, 500);
     }
 
     function handleLoss() {
+        loseSound.play(); // <-- Mainkan suara KALAH
         clearInterval(timerInterval);
-        alert('Game Over! Anda telah membuat 5 kesalahan.');
-        window.location.href = 'index.html'; // Kembali ke home
+        // Beri jeda agar suara kekalahan terdengar sebelum alert muncul
+        setTimeout(() => {
+            alert('Game Over! Anda telah membuat 5 kesalahan.');
+            window.location.href = 'index.html'; // Kembali ke home
+        }, 500);
     }
 
     function saveToLeaderboard() {
@@ -181,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('sudokuLeaderboard', JSON.stringify(leaderboard));
     }
 
-    // --- Fungsi Bantuan yang Sebelumnya Hilang ---
+    // --- Fungsi Bantuan ---
     function isGameWon() { return board.flat().every(cell => cell !== 0); }
 
     function clearHighlights() { document.querySelectorAll('.cell').forEach(c => c.classList.remove('highlight-related', 'highlight-same-number')); }
@@ -207,7 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
         else numberButton.classList.remove('disabled');
     }
 
-    // --- FUNGSI TIMER YANG HILANG ---
     function startTimer() {
         clearInterval(timerInterval);
         timerInterval = setInterval(() => {
@@ -253,4 +269,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     init(); // Mulai game
-}); 
+});

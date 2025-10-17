@@ -1,18 +1,24 @@
 :root {
-    --bg-color: #f0f0f0;
-    --board-bg: #ffffff;
-    --border-color: #cccccc;
-    --border-thick: #333333;
-    --text-color: #333333;
-    --primary-color: #4a90e2;
-    --selected-bg: #dbe9f9;
-    --highlight-bg: #e8e8e8;
-    --error-color: #d9534f;
-    --user-input-color: #0056b3;
+    --bg-color: #10101a;
+    --container-bg: rgba(26, 26, 46, 0.7);
+    --primary-neon: #00ffff;
+    /* Cyan */
+    --secondary-neon: #ff00ff;
+    /* Magenta */
+    --user-input-neon: #39ff14;
+    /* Lime Green */
+    --error-neon: #ff1f1f;
+    /* Neon Red */
+    --text-color: #f0f0f0;
+    --border-color-dim: rgba(0, 255, 255, 0.2);
+    --border-color-thick: rgba(0, 255, 255, 0.7);
+    --selected-bg: rgba(0, 255, 255, 0.2);
+    --highlight-related-bg: rgba(255, 0, 255, 0.1);
+    --highlight-same-bg: rgba(0, 255, 255, 0.15);
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
@@ -22,44 +28,61 @@ body {
     margin: 0;
     padding: 10px;
     box-sizing: border-box;
+    background-image: linear-gradient(45deg, rgba(255, 0, 255, 0.1) 0%, rgba(0, 255, 255, 0.1) 100%);
 }
 
 .container {
-    background-color: var(--board-bg);
+    background: var(--container-bg);
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    border: 1px solid var(--border-color-dim);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2), 0 0 30px rgba(0, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     max-width: 500px;
     width: 100%;
 }
 
 header {
     text-align: center;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color-dim);
     padding-bottom: 15px;
     margin-bottom: 15px;
 }
 
-header h1 {
+.neon-text {
     margin: 0;
-    color: var(--primary-color);
+    font-weight: 700;
+    color: var(--primary-neon);
+    text-shadow: 0 0 5px var(--primary-neon), 0 0 10px var(--primary-neon);
+}
+
+#player-info {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+#player-info strong {
+    color: var(--secondary-neon);
 }
 
 .game-info {
     display: flex;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 15px;
+    font-size: 1rem;
 }
 
 #sudoku-board {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
     width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
-    border: 2px solid var(--border-thick);
+    margin: 0 auto 20px auto;
+    border: 2px solid var(--border-color-thick);
     aspect-ratio: 1 / 1;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px var(--primary-neon);
 }
 
 .cell {
@@ -67,60 +90,40 @@ header h1 {
     justify-content: center;
     align-items: center;
     font-size: clamp(16px, 4vw, 24px);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color-dim);
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .cell.given {
-    background-color: #f5f5f5;
+    color: var(--primary-neon);
     font-weight: bold;
     cursor: default;
 }
 
-.cell.selected {
-    background-color: var(--selected-bg);
-}
-
-.cell.highlight {
-    background-color: var(--highlight-bg);
-}
-
-.cell.error {
-    color: var(--error-color);
-    animation: shake 0.3s;
-}
-
 .cell.user-input {
-    color: var(--user-input-color);
+    color: var(--user-input-neon);
     font-weight: 600;
 }
 
-/* Garis tebal untuk sub-grid 3x3 */
-.cell:nth-child(3n) {
-    border-right: 2px solid var(--border-thick);
+.cell.selected {
+    background-color: var(--selected-bg);
+    outline: 2px solid var(--secondary-neon);
+    outline-offset: -2px;
 }
 
-.cell:nth-child(9n) {
-    border-right: none;
+.cell.highlight-related {
+    background-color: var(--highlight-related-bg);
 }
 
-.row:nth-child(3n) .cell {
-    border-bottom: 2px solid var(--border-thick);
+.cell.highlight-same-number {
+    background-color: var(--highlight-same-bg);
 }
 
-.row:last-child .cell {
-    border-bottom: none;
+.cell.error {
+    color: var(--error-neon);
+    animation: shake 0.3s;
 }
-
-.row .cell:nth-child(1) {
-    border-left: none;
-}
-
-.row:nth-child(1) .cell {
-    border-top: none;
-}
-
 
 @keyframes shake {
 
@@ -130,37 +133,55 @@ header h1 {
     }
 
     25% {
-        transform: translateX(-3px);
+        transform: translateX(-4px);
     }
 
     75% {
-        transform: translateX(3px);
+        transform: translateX(4px);
     }
+}
+
+/* Garis tebal sub-grid */
+.cell[data-row="2"],
+.cell[data-row="5"] {
+    border-bottom: 2px solid var(--border-color-thick);
+}
+
+.cell[data-col="2"],
+.cell[data-col="5"] {
+    border-right: 2px solid var(--border-color-thick);
 }
 
 #number-palette {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    gap: 8px;
 }
 
 .number {
     width: 40px;
     height: 40px;
-    margin: 0 5px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color-dim);
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: all 0.2s ease;
 }
 
-.number.selected {
-    background-color: var(--primary-color);
-    color: white;
+.number:hover {
+    background-color: var(--selected-bg);
+    border-color: var(--primary-neon);
+}
+
+.number.disabled {
+    color: rgba(240, 240, 240, 0.3);
+    border-color: rgba(240, 240, 240, 0.2);
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 footer {
@@ -168,90 +189,22 @@ footer {
     margin-top: 20px;
 }
 
-.controls,
-.best-times {
-    margin-bottom: 15px;
-}
-
-.difficulty-buttons button {
-    padding: 8px 15px;
-    margin: 0 5px;
-    border: 1px solid var(--primary-color);
-    background-color: white;
-    color: var(--primary-color);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.difficulty-buttons button.active,
-.difficulty-buttons button:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-#new-game-btn {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-#new-game-btn:hover {
-    background-color: #218838;
-}
-
-.best-times {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.best-times h3 {
-    margin-top: 0;
-}
-
-.best-times p {
-    margin: 5px 0;
-}
-
-/* --- GAYA BARU UNTUK HIGHLIGHT --- */
-
-/* Gaya untuk sel di baris dan kolom yang sama */
-.highlight-related {
-    background-color: #e8e8e8;
-}
-
-/* Gaya untuk sel dengan angka yang sama (lebih menonjol) */
-.highlight-same-number {
-    background-color: #dbe9f9;
-    font-weight: bold;
-}
-
-/* Gaya untuk tombol angka di palet yang sudah lengkap */
-.number.disabled {
-    background-color: #f0f0f0;
-    color: #cccccc;
-    cursor: not-allowed;
-    pointer-events: none;
-    /* Mencegah klik */
-}
-
 .home-btn {
     display: inline-block;
     padding: 10px 20px;
-    margin-bottom: 15px;
-    background-color: #007bff;
-    color: white;
     text-decoration: none;
+    border: 1px solid var(--secondary-neon);
+    background: transparent;
+    color: var(--secondary-neon);
     border-radius: 5px;
-    transition: background-color 0.2s;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .home-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--secondary-neon);
+    color: var(--bg-color);
+    box-shadow: 0 0 15px var(--secondary-neon);
 }
